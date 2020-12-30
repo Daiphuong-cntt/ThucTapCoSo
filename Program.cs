@@ -2,15 +2,27 @@
 
 namespace ThucTapCoSo
 {
+    class MERGESORT
+    {
+
+    }
+    class HEAPSORT
+    {
+
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ba la cay nen vang");
+            int []A={ 23,56,78,21,69,96,11,1,25,79,99 };
+            int n=A.Length;
 
-            Console.Write("## Me la cay nen xanh la la !!!");
-
-            Console.Write("Con la cay nen vang");
+            Console.WriteLine("Mang chua sap xep:");
+            for(int i=0;i<n;i++)
+            {
+                Console.Write"{0}\t",A[i]);
+            }
+            Console.ReadKey();
         }
     }
 }
