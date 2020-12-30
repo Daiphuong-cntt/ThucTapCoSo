@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include <graphics.h>
-#include <math.h>     
+    
 struct Node 
 { 
     int key; 
     struct Node *left, *right; 
 };   
 // tao nut BST moi
-struct Node newNode() 
+struct Node *newNode(int item) 
 { 
     struct Node *temp = new Node; 
     temp->key = item; 
@@ -16,7 +15,7 @@ struct Node newNode()
 } 
   // Các cửa hàng trong quá trình oder của BST 
 // in arr[] 
-void storeSorted(Node *root, int arr, int i) { 
+void storeSorted(Node *root, int arr[], int &i) { 
     if (root == NULL) 
     { 
         storeSorted(root->left, arr, i); 
