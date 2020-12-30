@@ -2,7 +2,9 @@
 #include <vector>
 #include <algorithm>        
 #include <iterator>            
-#include <queue>           
+#include <queue>
+#include <time.h>
+#include <cstdio>           
 using namespace std;
 
 // Radix Sort using base-10 radix
@@ -46,9 +48,9 @@ int main(){
 		123, 432, 654, 3123, 654, 2123, 543, 131, 653, 123, 533, 1141, 532, 213, 2241, 824, 1124, 42, 134, 411,
 		491, 341, 1234, 527, 388, 245, 1992, 654, 243, 987 };
 	vector<unsigned> output(input.size());
-
+	  clock_t start = clock();
 	radixSort(input.begin(), input.end(), output.begin());
-
+ printf("Time: %.9fs\n", (double)(clock() - start)/CLOCKS_PER_SEC);
 
 	for (unsigned it : output){
 		cout << it << endl;
