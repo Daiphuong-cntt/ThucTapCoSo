@@ -1,8 +1,4 @@
 
-edit
-play_arrow
-
-brightness_4
 // C++ program for insertion sort  
 #include <bits/stdc++.h> 
 using namespace std; 
