@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include <graphics.h>
-#include <math.h>
 // Hàm doi cho 2 so nguyen
-void swap(int xp, int yp)
+void swap(int &xp, int &yp)
 {
     int temp = xp;
     xp = yp;
@@ -10,7 +8,7 @@ void swap(int xp, int yp)
 }
  
 // Hàm selection sort
-void selectionSort(int arr, int n)
+void selectionSort(int arr[], int n)
 {
     // Di chuyen ranh gioi cua mang dã sap xep và chua sap xep
     for (i = 0; i < n+1; i++)
