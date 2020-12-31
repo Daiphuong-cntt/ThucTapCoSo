@@ -1,61 +1,94 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>        
-#include <iterator>            
-#include <queue>
-#include <time.h>
-#include <cstdio>           
-using namespace std;
+#include <ctime>
+#include <cstdio>
+#include<fstream> 
+using namespace std; 
+  
+// A utility function to get maximum value in arr[] 
+int getMax(int arr[], int n) 
+{ 
+    int mx = arr[0]; 
+    for (int i = 1; i < n; i++) 
+        if (arr[i] > mx) 
+            mx = arr[i]; 
+    return mx; 
+} 
+  
+// A function to do counting sort of arr[] according to 
+// the digit represented by exp. 
+void countSort(int arr[], int n, int exp) 
+{ 
+    int output[n]; // output array 
+    int i, count[10] = { 0 }; 
+  
+    // Store count of occurrences in count[] 
+    for (i = 0; i < n; i++) 
+        count[(arr[i] / exp) % 10]++; 
+  
+    // Change count[i] so that count[i] now contains actual 
+    //  position of this digit in output[] 
+    for (i = 1; i < 10; i++) 
+        count[i] += count[i - 1]; 
+  
+    // Build the output array 
+    for (i = n - 1; i >= 0; i--) { 
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i]; 
+        count[(arr[i] / exp) % 10]--; 
+    } 
+  
+    // Copy the output array to arr[], so that arr[] now 
+    // contains sorted numbers according to current digit 
+    for (i = 0; i < n; i++) 
+        arr[i] = output[i]; 
+} 
+  
+// The main function to that sorts arr[] of size n using 
+// Radix Sort 
+void radixsort(int arr[], int n) 
+{ 
+    // Find the maximum number to know number of digits 
+    int m = getMax(arr, n); 
+  
+    // Do counting sort for every digit. Note that instead 
+    // of passing digit number, exp is passed. exp is 10^i 
+    // where i is current digit number 
+    for (int exp = 1; m / exp > 0; exp *= 10) 
+        countSort(arr, n, exp); 
+} 
+  
+// A utility function to print an array 
+void print(int arr[], int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+        cout << arr[i] << " "; 
+} 
 
-// Radix Sort using base-10 radix
-template <typename InputIterator, typename OutputIterator> 
-void radixSort(InputIterator start, InputIterator end, OutputIterator output){
-	const int BASE = 10;    // Base
-	std::queue<  typename std::iterator_traits<OutputIterator>::value_type > bucket[BASE];    // An array of buckets based on the base
-
-	unsigned size = end - start;
-	// Get the maximum number
-	typename std::iterator_traits<InputIterator>::value_type max = *std::max_element(start, end);    // O(n)
-
-	// Copy from input to output
-	std::copy(start, end, output);    // O(n)
-
-	// Iterative Radix Sort - if k is log BASE (max), then the complexity is O( k * n)
-	for (unsigned power = 1; max != 0; max /= BASE, power *= BASE){ 
-
-		// Assign to buckets
-		for (OutputIterator it = output; it != output + size; it++){
-			unsigned bucketNumber = (unsigned)((*it / power) % BASE);
-			bucket[bucketNumber].push(*it);        // O(1)
-		}
-
-		// Re-assemble
-		OutputIterator it = output;
-		for (int i = 0; i < BASE; i++){
-			int bucketSize = bucket[i].size();
-			for (int j = 0; j < bucketSize; j++){
-				*it = bucket[i].front();
-				bucket[i].pop();
-				it++;
-			}
-		}
-	}
-}
-
-
-int main(){
-	vector<unsigned> input = { 5, 10, 15, 20, 25, 50, 40, 30, 20, 10, 9524, 878, 17, 1, 99, 18785, 3649, 164, 94,
-		123, 432, 654, 3123, 654, 2123, 543, 131, 653, 123, 533, 1141, 532, 213, 2241, 824, 1124, 42, 134, 411,
-		491, 341, 1234, 527, 388, 245, 1992, 654, 243, 987 };
-	vector<unsigned> output(input.size());
-	  clock_t start = clock();
-	radixSort(input.begin(), input.end(), output.begin());
- printf("Time: %.9fs\n", (double)(clock() - start)/CLOCKS_PER_SEC);
-
-	for (unsigned it : output){
-		cout << it << endl;
-	}
-	cin.get();
+// Driver Code 
+int main() 
+{ 
+    int arr[500];
+    int i=0;
+    
+    FILE *f =fopen("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao500.txt","r");
+    if (f == NULL)
+	{
+		cout<<"Can't open file!";
+	} 
+    else{
+        int so;
+        while (fscanf(f, "%d", &so) != EOF)
+	        {
+                arr[i]=so;
+                i++;
+	        }
+    }
+     int n = sizeof(arr) / sizeof(arr[0]); 
+        clock_t begin = clock();
+    // Function Call 
+       radixsort(arr, n); 
+       clock_t end = clock();
+	   cout<<"Time run: "<<(float)(end-begin)/CLOCKS_PER_SEC<<" s"<<endl;
+    print(arr, n); 
 	getchar();
-	return 0;
+    return 0; 
 }
