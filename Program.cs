@@ -2,15 +2,19 @@
 
 namespace ThucTapCoSo
 {
-    class Program
+    class Demo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ba la cay nen vang");
+            CoutingSort.SortArrayWithCountingSort();
+           TimSort.SortArrayWithTimSort();
 
-            Console.Write("## Me la cay nen xanh la la !!!");
 
-            Console.Write("Con la cay nen vang");
-        }
+
+            Console.ReadKey();
+         }
     }
-}
+ }
+    
+  
+

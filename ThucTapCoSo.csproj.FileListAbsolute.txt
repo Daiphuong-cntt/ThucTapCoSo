@@ -1,0 +1,13 @@
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\bin\Debug\netcoreapp3.1\ThucTapCoSo.exe
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\bin\Debug\netcoreapp3.1\ThucTapCoSo.deps.json
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\bin\Debug\netcoreapp3.1\ThucTapCoSo.runtimeconfig.json
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\bin\Debug\netcoreapp3.1\ThucTapCoSo.runtimeconfig.dev.json
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\bin\Debug\netcoreapp3.1\ThucTapCoSo.dll
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\bin\Debug\netcoreapp3.1\ThucTapCoSo.pdb
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.csprojAssemblyReference.cache
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.dll
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.pdb
+C:\Users\Lenovo\source\repos\ThucTapCoSo\ThucTapCoSo\obj\Debug\netcoreapp3.1\ThucTapCoSo.genruntimeconfig.cache
