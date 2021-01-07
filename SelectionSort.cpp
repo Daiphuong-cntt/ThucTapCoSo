@@ -25,7 +25,7 @@ public: void selectionSort(int arr[], int n)
             // tim phan tu nho nhat trong mang chua sap xep
             min_idx = i;
             for (j = i + 1; j < n; j++)
-                if (arr[j] > arr[min_idx])
+                if (arr[j] < arr[min_idx])
                     min_idx = j;
 
             // doi cho phan tu nho nhat voi phan tu dau tien
