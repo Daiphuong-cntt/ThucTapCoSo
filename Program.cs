@@ -4,6 +4,7 @@ namespace ThucTapCoSo
 {
     class MERGESORT
     {
+        // xử lý từng mảng con
         static public void merge(int[] A, int l,int r,int m) 
         {
             int i, j, k;
@@ -75,8 +76,50 @@ namespace ThucTapCoSo
     }
     class HEAPSORT
     {
-
+        // Tìm gtln(largest) và đưa lên làm max của Heap
+        static void max_heap(int[] A, int n, int i) 
+        { 
+            int largest = i; 
+            int left =  2*i + 1;
+            int right = 2*i + 2; 
+            // nếu gtln nằm bên trái
+            if (left < n && A[left] > A[largest]) 
+            {
+                largest = left; // đưa hệ số lên
+            }
+            // nếu gtln nằm bên phải
+            if (right < n && A[right] > A[largest]) 
+            {
+                largest = right; // đưa hệ số lên
+            }
+            // đưa giá trị lên vị trí max heap 
+            if (largest != i) 
+            { 
+                int tam = A[i]; 
+                A[i] = A[largest]; 
+                A[largest] = tam; 
+                max_heap(A, n, largest); 
+            } 
+        }
+        // hàm sắp xếp chính của thuật toán
+        static void HeapSort(int[] A, int n)
+        {
+            // tìm gt trị max đưa lên gốc Heap
+            for (int i = n / 2 - 1; i >= 0; i--) 
+            {
+                max_heap(A, n, i); 
+            }
+            // đưa giá trị vừa tìm được xuống vị trí cuối của mảng đã sắp xếp
+            for (int i = n-1; i>=0; i--)
+            { 
+                int temp = A[0]; 
+                A[0] = A[i]; 
+                A[i] = temp; 
+                max_heap(A, i, 0); 
+            } 
+        } 
     }
+    /*============================================================================*/
     class Program
     {
         // Hàm chính
@@ -89,13 +132,25 @@ namespace ThucTapCoSo
             {
                 Console.Write("{0}\t",input[i]);
             }
+
             // Chạy thuật toán Merge Sort
             MERGESORT ms = new MERGESORT();
             ms.MergeSort(input, 0, input.Length-1);
+            Console.WriteLine("Mảng sau khi thực hiện Merge Sort: ");
+            for (i = 0; i < input.Length; i++)
+            {
+                Console.Write("{0}\t",input[i]);
+            }
+
             // Chạy thuật toán Heap Sort
-            /*HEAPSORT hs = new HEAPSORT();
-            hs.
-            */
+            HEAPSORT hs = new HEAPSORT();
+            hs.HeapSort(input, input.Length);
+            Console.WriteLine("Mảng sau khi thực hiện Heap Sort: ");
+            for (i = 0; i < input.Length; i++)
+            {
+                Console.Write("{0}\t",input[i]);
+            }
+
             Console.ReadKey();
         }
     }
