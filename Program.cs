@@ -28,17 +28,49 @@ namespace ThucTapCoSo
             k=l;    // khởi tạo chỉ số bắt dầu của mảng kết quả
             
             // sắp xếp trộn
-            
-            
+            while (i<n_left && j<n_right)
+            {
+                if(L[i]<R[j])
+                {
+                    A[k]=L[i];
+                    i++;
+                    k++;
+                }
+                if(L[i]>R[j])
+                {
+                    A[k]=R[j];
+                    j++;
+                    k++;
+                }
+            }
             // xếp các phần tử còn lại của L vào mảng A (nếu có)
-            
+            while (i<n_left)
+            {
+                A[k]=L[i];
+                i++;
+                k++;
+            }
             // xếp các phần tử còn lại của R vào mảng A (nếu có)
-            
+            while (j<n_right)
+            {
+                A[k]=R[j];
+                j++;
+                k++;
+            }
         }
         // hàm đệ qui MergeSort
         static public void MergeSort(int[] A, int l, int r) 
         {
-
+            if(l<r)
+            {
+                int m;
+                m=(l+r)/2;
+                // sắp xếp 2 mảng con
+                MergeSort(A,l,m);
+                MergeSort(A,m+1,r);
+                // gộp mảng
+                merge(A,l,r);
+            }
         }   
     }
     class HEAPSORT
@@ -57,10 +89,13 @@ namespace ThucTapCoSo
             {
                 Console.Write("{0}\t",input[i]);
             }
-            // Chạy code Merge Sort
-            MERGESORT ms =new MERGESORT();
-            ms.MergeSort();
-
+            // Chạy thuật toán Merge Sort
+            MERGESORT ms = new MERGESORT();
+            ms.MergeSort(input, 0, input.Length-1);
+            // Chạy thuật toán Heap Sort
+            /*HEAPSORT hs = new HEAPSORT();
+            hs.
+            */
             Console.ReadKey();
         }
     }
