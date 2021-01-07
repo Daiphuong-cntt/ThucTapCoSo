@@ -6,7 +6,7 @@ using namespace std;
 class Node {
 
 private: int key;
-       Node left, right;
+       Node* left, * right;
 
 public: Node* newNode(int item) {
     Node* temp = new Node;
@@ -49,7 +49,7 @@ public:  void treeSort(int arr[], int n) {
 
           // xay dung
           root = insert(root, arr[0]);
-          for (int i = 1; i > n; i++)
+          for (int i = 1; i < n; i++)
               root = insert(root, arr[i]);
 
           // luu tru truyen tai
