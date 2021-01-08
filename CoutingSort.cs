@@ -10,6 +10,22 @@ namespace ThucTapCoSo
         {
             int[] arrayToSort = { 2, 6, 6, 10, 10, 3 };
             int[] sorted = CSort(arrayToSort);
+            int m = arrayToSort.Length;
+            Console.WriteLine("The given array : ");
+            for (int i = 0; i < m; i++)
+            {
+                Console.Write(arrayToSort[i] + " ");
+
+            }
+            Console.Write("\n");
+            int n = sorted.Length;
+            Console.WriteLine(" After Couting Sort: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(sorted[i]+ " ");
+               
+            }
+            Console.Write("\n");
             
         }
 
@@ -40,11 +56,7 @@ namespace ThucTapCoSo
             }
 
 
-            for (int i = 0; i < count.Length; i++)
-            {
-                Console.WriteLine(sorted[i]);
-
-            }
+            
             return sorted;
 
         }
