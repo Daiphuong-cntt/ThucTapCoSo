@@ -1,72 +1,72 @@
-#include<stdio.h>
+#include <iostream>
+using namespace std;
 
-void Nhapdl(int A[],int &n)
-{
-	printf("Nhap So luong pt cua mang: ");
-	scanf("%d",&n);
+// Vun dong mot cay con co nut root la i
+// n la kich thuoc cua dong
+class HeapSort{
+	public: HeapSort(){
+		
+	}
 	
-	for(int i=0;i<n;i++)
+	public: void heapify(int arr[], int n, int i)
 	{
-		printf("A[%d]: ",i+1);
-		scanf("%d",&A[i]);
-	}
-}
-void Xuatdl(int A[],int n)
-{
-	for(int i=0;i<n;i++)
-	{
-		printf("%3d",A[i]);
-	}
-}
-void maxHeapSort(int A[],int n,int i)
-{
-	int max=i;	// khoi tao phan tu lon nhat o goc
-	int l=2*i+1;
-	int r=2*i+2;
+		int largest = i; // khoi tao largest nhu la root
+		int l = 2 * i + 1; // left = 2*i + 1
+		int r = 2 * i + 2; // right = 2*i + 2
 	
-	// Dua he so lon nhat len lam goc
-	if(n>l && A[l]>A[max])// Max nam ben trai
-	{
-		max=l;
+		// Neu nut con trai lon hon so voi root
+		if (l < n && arr[l] > arr[largest])
+			largest = l;
+	
+		// Neu nut con phai lon hon so voi root
+		if (r < n && arr[r] > arr[largest])
+			largest = r;
+	
+		// Neu root khong phai la lon nhat
+		if (largest != i)
+		{
+			swap(arr[i], arr[largest]);
+	
+			// De quy lai ham heapify
+			heapify(arr, n, largest);
+		}
 	}
-	if(n>r && A[r]>A[max])// Max nam ben phai
+	
+	// Ham vun dong
+	public: void heapSort(int arr[], int n)
 	{
-		max=r;
+		// Tao mot dong (Sap xep lai mang)
+		for (int i = n / 2 - 1; i >= 0; i--)
+			heapify(arr, n, i);
+	
+		// Trích xu?t t?ng m?t ph?n t? m?t t? heap
+		for (int i = n - 1; i >= 0; i--)
+		{
+			// Di chuyen root ve cuoi cung
+			swap(arr[0], arr[i]);
+	
+			// goi ham heapify
+			heapify(arr, i, 0);
+		}
 	}
-	// Do dua gia tri lon nhat len lam goc
-	if(max !=i)
+	public: void Xuatmang(int arr[], int n)
 	{
-		int tam=A[i];
-		A[i]=A[max];
-		A[max]=tam;
-		// tiep tuc dua max len lam goc
-		maxHeapSort(A,n,max);
+		for (int i = 0; i<n; ++i)
+			cout << arr[i] << " ";
+		cout << "\n";
 	}
-}
-void HeapSort(int A[],int n)
-{
-	// Tim max cua Heap
-	for(int i=n/2-1;i>=0;i--)
-		maxHeapSort(A,n,i);
-	// sau do dem max xuong cuoi Heap
-	for(int i=n-1;i>0;i--)
-	{
-		int tam=A[0];
-		A[0]=A[i];
-		A[i]=tam;
-		maxHeapSort(A,i,0);
-	}	
-}
+};
 int main()
-{
-	int A[100];
-	int n;
-	Nhapdl(A,n);
-	printf("Mang vua nhap:");
-	Xuatdl(A,n);
+{	// tao mang dau vao
+	int arr[] = {23, 1, 32, 68, 89, 200, 55, 78, 99, 12};
+	int n = sizeof(arr) / sizeof(arr[0]);
 	
-	HeapSort(A,n);
-	printf("\nMerge Sort:");
-	Xuatdl(A,n);
+	HeapSort*node=new HeapSort();
+	node->heapSort(arr, n);
+
+	cout << "Mang sau sap xep \n";
+	node->Xuatmang(arr, n);
+	cin.get();
+	getchar();
 	return 0;
 }
