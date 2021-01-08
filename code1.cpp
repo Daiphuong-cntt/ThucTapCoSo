@@ -2,58 +2,58 @@
 #include<conio.h>
 #include<Windows.h>
 #include<time.h>
-#define MAX 100
+#define MAX 20
+using namespace std;
 
-
-void PhatSinhNgauNhien(int a[])
-{
-	srand(time(0));
-	for(int i=0;i<MAX;i++)
-	{
-		a[i]=(rand()%1500)-750; // ? d‚y c·c gi· tr? ng?u nhiÍn s? n?m trong do?n [-30,30] .
-	}
-}
-
-// H‡m xu?t m?ng c·c s? nguyÍn ng?u nhiÍn .
-void XuatMang(int a[])
-{
-	for(int i=0;i<MAX;i++)
-	{
-		printf("%4d",a[i]);
-	}
-}
-
-// H‡m ho·n v? 2 s? nguyÍn.
-void HoanVi(int &x,int &y)
-{
-	int temp=x;
-	x=y;
-	y=temp;
-}
-
-
-void SapXepGiamDanBangThuatToanQuickSort(int a[],int left,int right)
-{
-	int i,j,x;
-	if(left>=right)
-	{
-		return;
-	}
-	x=a[(left+right)/2]; // Ch?n ph?n t? gi?a l‡m gi· tr? m?c .
-	i=left;
-	j=right;
-	while(i<j)
-	{
-		while(a[i]>x) // ? d‚y l‡ s?p gi?m d?n
+class sort{
+	public:
+		void PhatSinhNgauNhien(int a[])
 		{
-			i++;
+		srand(time(0));
+		for(int i=0;i<MAX;i++)
+			{
+			a[i]=(rand()%1500)-750; 
+			}
 		}
-		while(a[j]<x) // ? d‚y l‡ s?p gi?m d?n
+	public:
+	void XuatMang(int a[])
+	{
+		for(int i=0;i<MAX;i++)
 		{
-			j--;
+			printf("%4d",a[i]);
 		}
-		if(i<=j)
+	}
+	public:
+	void HoanVi(int &x,int &y)
+	{
+		int temp=x;
+		x=y;
+		y=temp;
+	}
+
+	public:
+	void SapXepGiamDanBangThuatToanQuickSort(int a[],int left,int right)
+	{
+		int i,j,x;
+		if(left>=right)
 		{
+			return;
+		}
+		x=a[(left+right)/2]; // Ch?n ph?n t? gi?a l√†m gi√° tr? m?c .
+		i=left;
+		j=right;
+		while(i<j)
+			{
+			while(a[i]>x) // ? d√¢y l√† s?p gi?m d?n
+			{
+				i++;
+			}
+			while(a[j]<x) // ? d√¢y l√† s?p gi?m d?n
+			{
+				j--;
+			}
+			if(i<=j)
+			{
 			HoanVi(a[i],a[j]);
 			i++;
 			j--;
@@ -63,8 +63,7 @@ void SapXepGiamDanBangThuatToanQuickSort(int a[],int left,int right)
 	SapXepGiamDanBangThuatToanQuickSort(a,i,right);
 }
 
-
-// H‡m s?p x?p m?ng c·c s? nguyÍn gi?m d?n b?ng thu?t to·n Bubble Sort .
+public:
 void SapXepGiamDanBangThuatToanBubbleSort(int a[])
 {
     for(int i=0;i<MAX-1;i++)
@@ -78,18 +77,13 @@ void SapXepGiamDanBangThuatToanBubbleSort(int a[])
 		}
 	}
 }
-
-// H‡m chÌnh .
-int main()
+public:
+void Xuat()
 {
 	quaylai:printf("\n>>>>>>>>>>>>>>>>Chuong Trinh Do Time Cua Cac Thuat Toan Sap Xep:<<<<<<<<<<<<<<\n");
-	int a[MAX],b[MAX],c[MAX],d[MAX],tieptuc; // Khai b·o 4 m?ng a,b,c,d ?ng v?i 4 thu?t to·n s?p x?p .
-	
-
-
-	// L?n s?p x?p th? hai - Thu?t To·n Quick Sort .
+	int b[MAX],d[MAX],tieptuc;
 	int j=1000; 
-	clock_t start2 = clock(); 
+	clock_t start1 = clock(); 
 	while( j--> 0 )
 	PhatSinhNgauNhien(b);
 	printf("\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan 1 La:<<<<<<<<<<<<<<<<<<<<<<<<\n");
@@ -99,13 +93,12 @@ int main()
 	printf("\n------------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Quick Sort La:------------\n");
 	XuatMang(b);
 	printf("\n");
-	clock_t finish2 = clock(); 
-	double duration2 = (double)(finish2 - start2) / CLOCKS_PER_SEC;
-
-
-	// L?n s?p x?p th? tu - Thu?t To·n Bubble Sort .
+	clock_t finish1 = clock(); 
+	double duration1 = (double)(finish1 - start1) / CLOCKS_PER_SEC;
+	
+	
 	int l=1000; 
-	clock_t start4 = clock(); 
+	clock_t start2 = clock(); 
 	while( l--> 0 )
 	PhatSinhNgauNhien(d);
 	printf("\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan La:<<<<<<<<<<<<<<<<<<<<<<<<\n");
@@ -115,19 +108,29 @@ int main()
 	printf("\n-----------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Bubble Sort La:----------\n");
 	XuatMang(d);
 	printf("\n");
-	clock_t finish4 = clock(); 
-	double duration4 = (double)(finish4 - start4) / CLOCKS_PER_SEC;
+	clock_t finish2 = clock(); 
+	double duration2 = (double)(finish2 - start2) / CLOCKS_PER_SEC;
 
 	printf("\n");
-	printf("Thoi gian thuc thi cua thuat toan Quick Sort la: %.2lf", duration2);// Tr? v? th?i gian s?p x?p c?a Thu?t To·n Quick Sort.
+	printf("Thoi gian thuc thi cua thuat toan Quick Sort la: %.2lf", duration1);
 	printf("\n");
-	printf("Thoi gian thuc thi cua thuat toan Bubble Sort la: %.2lf", duration4);// Tr? v? th?i gian s?p x?p c?a Thu?t To·n Bubble Sort.
+	printf("Thoi gian thuc thi cua thuat toan Bubble Sort la: %.2lf", duration2);
 	printf("\n");
 	printf("\nBan co muon tiep tuc thuc hien chuong trinh hay khong ? Neu co bam phim C,nguoc lai bam bat ky 1 phim nao khac de ket thuc!");
 	tieptuc=getch();
 	if(tieptuc=='c'||tieptuc=='C')
 	{
-		system("cls"); // X·c nh?n khi ngu?i d˘ng b?m phÌm C trÍn b‡n phÌm thÏ xÛa di h?t t?t c? nh?ng d? li?u d„ th?c thi tru?c dÛ d? chu?n b? cho l?n th?c thi m?i .
+		system("cls");
 		goto quaylai; 
 	}
+	
+}	
+};
+
+int main()
+{
+    sort s;
+	s.Xuat(); 
+
+	return 0;
 }
