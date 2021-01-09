@@ -1,9 +1,10 @@
-#include<stdio.h>
-#include<conio.h>
+#include<iostream>
 #include<Windows.h>
 #include<time.h>
+#include<conio.h>
 #define MAX 20
 using namespace std;
+
 
 class sort{
 	public:
@@ -20,7 +21,8 @@ class sort{
 	{
 		for(int i=0;i<MAX;i++)
 		{
-			printf("%4d",a[i]);
+			cout << a[i]<< " ";
+		
 		}
 	}
 	public:
@@ -80,19 +82,19 @@ void SapXepGiamDanBangThuatToanBubbleSort(int a[])
 public:
 void Xuat()
 {
-	quaylai:printf("\n>>>>>>>>>>>>>>>>Chuong Trinh Do Time Cua Cac Thuat Toan Sap Xep:<<<<<<<<<<<<<<\n");
+	quaylai:cout <<"\n>>>>>>>>>>>>>>>>Chuong Trinh Do Time Cua Cac Thuat Toan Sap Xep:<<<<<<<<<<<<<<\n";
 	int b[MAX],d[MAX],tieptuc;
 	int j=1000; 
 	clock_t start1 = clock(); 
 	while( j--> 0 )
 	PhatSinhNgauNhien(b);
-	printf("\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan 1 La:<<<<<<<<<<<<<<<<<<<<<<<<\n");
+	cout <<"\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan 1 La:<<<<<<<<<<<<<<<<<<<<<<<<\n";
 	XuatMang(b);
 	printf("\n");
 	SapXepGiamDanBangThuatToanQuickSort(b,0,MAX-1);
-	printf("\n------------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Quick Sort La:------------\n");
+	cout <<"\n------------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Quick Sort La:------------\n";
 	XuatMang(b);
-	printf("\n");
+	cout <<"\n";
 	clock_t finish1 = clock(); 
 	double duration1 = (double)(finish1 - start1) / CLOCKS_PER_SEC;
 	
@@ -101,23 +103,23 @@ void Xuat()
 	clock_t start2 = clock(); 
 	while( l--> 0 )
 	PhatSinhNgauNhien(d);
-	printf("\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan La:<<<<<<<<<<<<<<<<<<<<<<<<\n");
+	cout <<"\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan La:<<<<<<<<<<<<<<<<<<<<<<<<\n";
 	XuatMang(d);
-	printf("\n");
+	cout <<"\n";
 	SapXepGiamDanBangThuatToanBubbleSort(d);
-	printf("\n-----------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Bubble Sort La:----------\n");
+	cout <<"\n-----------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Bubble Sort La:----------\n";
 	XuatMang(d);
-	printf("\n");
+	cout <<"\n";
 	clock_t finish2 = clock(); 
 	double duration2 = (double)(finish2 - start2) / CLOCKS_PER_SEC;
 
-	printf("\n");
-	printf("Thoi gian thuc thi cua thuat toan Quick Sort la: %.2lf", duration1);
-	printf("\n");
-	printf("Thoi gian thuc thi cua thuat toan Bubble Sort la: %.2lf", duration2);
-	printf("\n");
-	printf("\nBan co muon tiep tuc thuc hien chuong trinh hay khong ? Neu co bam phim C,nguoc lai bam bat ky 1 phim nao khac de ket thuc!");
-	tieptuc=getch();
+
+	cout <<"\nThoi gian thuc thi cua thuat toan Quick Sort la: "<< duration1<<endl;
+	
+		cout <<"\nThoi gian thuc thi cua thuat toan Bubble Sort la: "<< duration2<<endl;
+	
+	cout <<"\nBan co muon tiep tuc thuc hien chuong trinh hay khong ? Neu co bam phim C,nguoc lai bam bat ky 1 phim nao khac de ket thuc!";
+	tieptuc= getch();
 	if(tieptuc=='c'||tieptuc=='C')
 	{
 		system("cls");
