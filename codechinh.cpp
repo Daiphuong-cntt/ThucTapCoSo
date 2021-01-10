@@ -4,7 +4,7 @@
 #include <cstdio>
 #include<fstream> 
 #include <time.h>
-#include <cstdio>
+#include <cstdlib>
 #include<string>
 using namespace std;
 class Source
@@ -21,7 +21,14 @@ public:
             cout<<arr[i]<<"\n";
         }
     }
-
+    void taoarr(int arr[],int n)
+    {
+        srand(time(NULL));
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=rand();
+        }
+    }
 };
 class Source100: public Source{
     public:
@@ -52,7 +59,10 @@ class Source100: public Source{
  
         fsFile.close();
     }
-    
+    void taomang(int dl[],int n)
+    {
+        Source::taoarr(dl,n);
+    }
     void xuatmang(int arr[],int n)
     {
         Source::xuatmang(arr,n);
@@ -88,7 +98,10 @@ class Source250:public Source{
  
         fsFile.close();
     }
-    
+    void taomang(int dl[],int n)
+    {
+        Source::taoarr(dl,n);
+    }
     void xuatmang(int arr[],int n)
     {
         Source::xuatmang(arr,n);
@@ -123,7 +136,10 @@ class Source500: public Source{
  
         fsFile.close();
     }
-    
+    void taomang(int dl[],int n)
+    {
+        Source::taoarr(dl,n);
+    }
    void xuatmang(int arr[],int n)
     {
         Source::xuatmang(arr,n);
@@ -232,7 +248,7 @@ int main()
 {
     Source100 s;
     Source100 s100;
-    s100.laymangfile();
+    s100.taomang(s100.dulieu100,s100.n);
     s100.xuatmang(s100.dulieu100,s100.n);
    // Source250 s250("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao250.txt");
     //Source500 s500("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao500.txt");
