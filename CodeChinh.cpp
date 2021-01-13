@@ -1,12 +1,11 @@
-#include <iostream>
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-#include <fstream> 
+#include<iostream>
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<fstream> 
 
 using namespace std;
 
-// doi tuong can sap xep
 class Source{
 	public:
 	Source(){}
@@ -24,39 +23,6 @@ class Source{
 		{
 			cout << A[i] << " ";
 		}
-	}
-};
-class Source_10: public Source{
-	public:
-	int dauvao10[10];
-	int n=10;
-	Source_10(): Source(){}
-	void DocFile()
-	{
-		fstream fsFile;
-		fsFile.open("D:\\dauvao10.txt", ios::in);
-	    if (fsFile.eof())
-	    {
-	        cout << "Doc file thanh cong !";
-	    }
-        else
-	    {
-	  		int tam ;
-	        int i = 0;
-	        while (fsFile>>tam)
-	        {
-	            this->dauvao10[i]=tam;
-	            i++;
-	        }
-	    }
-	}
-	void TaoMang_10(int dauvao10[],int n)
-	{
-		Source::CreSource(dauvao10,n);
-	}
-	void XuatMang_100(int dauvao10[],int n)
-	{
-		Source::PrSource(dauvao10,n);
 	}
 };
 class Source_100: public Source{
@@ -90,6 +56,39 @@ class Source_100: public Source{
 	void XuatMang_100(int dauvao100[],int n)
 	{
 		Source::PrSource(dauvao100,n);
+	}
+};
+class Source_250: public Source{
+	public:
+	int dauvao250[250];
+	int n=250;
+	Source_250(): Source(){}
+	void DocFile()
+	{
+		fstream fsFile;
+		fsFile.open("D:\\dauvao2500.txt", ios::in);
+	    if (fsFile.eof())
+	    {
+	        cout << "Doc file thanh cong !";
+	    }
+        else
+	    {
+	  		int tam ;
+	        int i = 0;
+	        while (fsFile>>tam)
+	        {
+	            this->dauvao250[i]=tam;
+	            i++;
+	        }
+	    }
+	}
+	void TaoMang_250(int dauvao250[],int n)
+	{
+		Source::CreSource(dauvao250,n);
+	}
+	void XuatMang_250(int dauvao250[],int n)
+	{
+		Source::PrSource(dauvao250,n);
 	}
 };
 class Source_500: public Source{
@@ -151,7 +150,9 @@ class MergeSort: public Sort{
 	    for (int j = 0; j < n2; j++)
 	        R[j] = arr[m + 1 + j];
 	    // thuc hien tron code
-	    int i = 0;	int j = 0;	int k = l;
+	    int i = 0;
+		int j = 0;
+		int k = l;
 	    while (i < n1 && j < n2)
 		{
 	        if (L[i] <= R[j]) {
@@ -189,7 +190,7 @@ class MergeSort: public Sort{
 		    merge(arr,l,m,r);
 	    }
 	}
-	void ThoiGianThucHien(int arr[],int n)
+	double ThoiGianThucHien(int arr[],int n)
 	{
 		clock_t star = (double)clock();
 		int l=0;
@@ -197,7 +198,8 @@ class MergeSort: public Sort{
 		mergeSort(arr,l,r);
 		//Sort:: printArray(arr,n);
 		clock_t end = clock();
-		cout<<"Merge Sort: "<<(float)(end-star)/CLOCKS_PER_SEC<<" s"<<endl;
+		double d = (double)(end-star)/CLOCKS_PER_SEC;
+		return d;
 	}
 };
 class HeapSort : public Sort{
@@ -236,45 +238,33 @@ class HeapSort : public Sort{
 			heapify(arr, i, 0);
 		}
 	}
-	void ThoiGianThucHien(int arr[],int n)
+	double ThoiGianThucHien(int arr[],int n)
 	{
 		clock_t star = clock();
 		heapSort(arr,n);
 		//Sort:: printArray(arr,n);
 		clock_t end = clock();
-		cout<<"Heap Sort: "<<(double)(end-star)/CLOCKS_PER_SEC<<" s"<<endl;
+		double d = (double)(end-star)/CLOCKS_PER_SEC;
+		return d;
 	}
 };
-
 int main()
 {
-    MergeSort ms10, ms100, ms500;
-    HeapSort hs10, hs100, hs500;
-    
- 	// dau vao 10
- 	Source_10 s10;
- 	s10.DocFile();
- 	s10.TaoMang_10(s10.dauvao10,s10.n);
- 	cout << "n = 10\n";
- 	ms10.ThoiGianThucHien(s10.dauvao10,s10.n);
-    hs10.ThoiGianThucHien(s10.dauvao10,s10.n);
+    MergeSort ms100, ms250, ms500;
+    HeapSort hs100, hs250, hs500;
  	
- 	// dau vao 100
  	Source_100 s100;
- 	s100.DocFile();
- 	s100.TaoMang_100(s100.dauvao100,s100.n);
- 	cout << "n = 100\n";
-    ms100.ThoiGianThucHien(s100.dauvao100,s100.n);	
-    hs100.ThoiGianThucHien(s100.dauvao100,s100.n);
- 	
- 	// dau vao 500
+	s100.DocFile();	
+	s100.TaoMang_100(s100.dauvao100,s100.n);
+ 	Source_250 s250;
+	s250.DocFile();	
+	s250.TaoMang_250(s250.dauvao250,s250.n);
  	Source_500 s500;
- 	s500.DocFile();
- 	s500.TaoMang_500(s500.dauvao500,s500.n);
- 	cout << "n = 500\n";
-    ms500.ThoiGianThucHien(s500.dauvao500,s500.n);
-    hs500.ThoiGianThucHien(s500.dauvao500,s500.n);
+	s500.DocFile();	
+	s500.TaoMang_500(s500.dauvao500,s500.n);
     
+    cout << "Size\t\t100\t250\t500";
+    cout << "\nMergeSort\t" << ms100.ThoiGianThucHien(s100.dauvao100,s100.n) << "\t" << ms250.ThoiGianThucHien(s250.dauvao250,s250.n) << "\t" << ms500.ThoiGianThucHien(s500.dauvao500,s500.n);
+	cout << "\nHeapSort\t"	<< hs100.ThoiGianThucHien(s100.dauvao100,s100.n) << "\t" << hs250.ThoiGianThucHien(s250.dauvao250,s250.n) << "\t" << hs500.ThoiGianThucHien(s500.dauvao500,s500.n);
 	return 0;
-
 }
