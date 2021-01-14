@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include<graphics.h>
 using namespace std;
+int time_delay=500;
 class Source
 {
 public:
@@ -168,7 +169,7 @@ void screen(int arr[], int n)
 	int xstart=0,ystart=0;
 	for(int i=0;i<n;i++)
 	{
-		hinhchunhat(xstart+i*800/n,0,xstart+(i+1)*800/n,arr[i]/100);
+		hinhchunhat(xstart+i*800/n,	0,	xstart+(i+1)*800/n,	arr[i]/100);
 	}
 } 
 };
@@ -193,27 +194,27 @@ class radix: public Sort{
         for (i = 0; i < n; i++)
         { 
             count[(arr[i] / exp) % 10]++;
-            sleep(500);
+           // sleep(500);
         } 
   
         for (i = 1; i < 10; i++)
         { 
             count[i] += count[i - 1];
-            sleep(500);
+            //sleep(500);
         } 
   
     
         for (i = n - 1; i >= 0; i--) { 
             output[count[(arr[i] / exp) % 10] - 1] = arr[i]; 
             count[(arr[i] / exp) % 10]--; 
-            sleep(500);
+            //sleep(500);
         } 
   
     
         for (i = 0; i < n; i++) 
         {
             arr[i] = output[i];
-            sleep(500);
+            //sleep(500);
         }
     } 
     void countSort_dohoa(int arr[], int n, int exp) 
@@ -224,24 +225,48 @@ class radix: public Sort{
     for (i = 0; i < n; i++) 
         count[(arr[i] / exp) % 10]++; 
   
-    for (i = 1; i < 10; i++) 
-        count[i] += count[i - 1]; 
+    for (i = 1; i < 10; i++)
+	{ 
+        count[i] += count[i - 1];
+	}
   
     
     for (i = n - 1; i >= 0; i--) { 
         output[count[(arr[i] / exp) % 10] - 1] = arr[i]; 
-        count[(arr[i] / exp) % 10]--; 
+        count[(arr[i] / exp) % 10]--;
+		cleardevice(); 
+	    Sort::screen(output,n);
+        delay(10); 
     } 
   
     
     for (i = 0; i < n; i++) 
         arr[i] = output[i];
-		 screen(arr,n);
-        delay(500);
         cleardevice(); 
+	    Sort::screen(arr,n);
+        delay(10);
+        
 }
-
-    void radixsort(int arr[], int n) 
+float radixsort_dohoa(int arr[],int n)
+{
+	clock_t begin = clock(); 
+	initwindow(800,1000);
+        // Tim so lon nhat de lay so chu so nhieu nhat
+        int m = getMax(arr, n); 
+  
+        // Thuc hien sap xep theo vi tri chu so, exp la vi tri chu so, i la so hien tai 
+        for (int exp = 1; m / exp > 0; exp *= 10)
+	    { 
+            countSort_dohoa(arr, n, exp);
+       
+	    }
+	    getch();
+         clock_t end = clock();	
+         //cout<<begin<<"\t"<<end<<endl;
+         return (float)((end-begin)/CLOCKS_PER_SEC);
+    
+}
+    float radixsort(int arr[], int n) 
     {
         clock_t begin = clock(); 
         // Tim so lon nhat de lay so chu so nhieu nhat
@@ -254,10 +279,12 @@ class radix: public Sort{
        
 	    }
          clock_t end = clock();
+         
+         
          //cout<<"Time run: "<<(float)(end-begin)/CLOCKS_PER_SEC<<" s"<<endl;
-         cout << fixed << setprecision(5) <<begin<<endl;
-         cout << fixed << setprecision(5) <<end<<endl;
-         cout << fixed << setprecision(5) <<"Time run: "<<(float)(end-begin)/CLOCKS_PER_SEC<<" s"<<endl;
+         //cout << fixed << setprecision(5) <<begin<<endl;
+         //cout << fixed << setprecision(5) <<end<<endl;
+         return (float)((end-begin)/CLOCKS_PER_SEC);
     } 
   
     // In mang sau khi sap xep 
@@ -269,7 +296,7 @@ class radix: public Sort{
 };
 class insert:public Sort{
     public:
-    void insertionSort(int arr[], int n)  
+    float insertionSort(int arr[], int n)  
     { 
         clock_t begin = clock(); 
         int i, key, j;  
@@ -288,13 +315,16 @@ class insert:public Sort{
 		      
         }
         clock_t end = clock();
-         cout<<"Time run: "<<(float)((end-begin)/CLOCKS_PER_SEC)*1000<<" s"<<endl;
+         return (float)((end-begin)/CLOCKS_PER_SEC);
     }  
-    void insertionSort_dohoa(int arr[], int n)  
+    float insertionSort_dohoa(int arr[], int n)  
 {  
-    int i, key, j;  
+    int i, key, j; 
+	initwindow(800,1000); 
+	clock_t begin = clock();
     for (i = 1; i < n; i++) 
     {  
+    	cleardevice();
         key = arr[i];  
         j = i - 1;  
   
@@ -307,8 +337,13 @@ class insert:public Sort{
         arr[j + 1] = key;
 			screen(arr,n);
         delay(10);
-        cleardevice();  
+          
     }
+    clock_t end = clock();
+    
+    return (float)((end-begin)/CLOCKS_PER_SEC);
+   
+    //closewindow();
   
 }
     // ham in mang 
@@ -319,21 +354,15 @@ class insert:public Sort{
 };
 int main()
 {
-    Source100 s;
-    Source100 s100_1,s100_2;
-    Source250 s250_1,s250_2;
-    Source500 s500_1,s500_2;
-
-    s100_1.taomang(s100_1.dulieu100,s100_1.n);
-    s100_2.laymangfile();
-    s250_1.taomang(s250_1.dulieu250,s250_1.n);
-    s250_2.laymangfile();
-    s500_1.taomang(s100_1.dulieu100,s100_1.n);
-    s500_2.laymangfile();
-    //s100_1.xuatmang(s100_1.dulieu100,s100_1.n);
-    //s100_2.xuatmang(s100_2.dulieu100,s100_2.n);
+    Source100 s100;
+    Source250 s250;
+    Source500 s500;
     radix ra100,ra250,ra500;
-    ra100.radixsort(s100_1.dulieu100,s100_1.n);
-    
-    getchar();
+    insert ins100,ins250,ins500;
+    s100.laymangfile();
+    s250.laymangfile();
+	s500.laymangfile();
+    cout<<"size\t100\t250\t500"<<endl;
+    cout<<"Radix Sort\t"<<ra100.radixsort(s100.dulieu100,s100.n)<<"\t"<<ra250.radixsort(s250.dulieu250,s250.n)<<"\t"<<ra500.radixsort(s500.dulieu500,s500.n);
+    getch();
 }
