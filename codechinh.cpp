@@ -32,18 +32,10 @@ public:
             arr[i]=rand();
         }
     }
-};
-class Source100: public Source{
-    public:
-    int dulieu100[100];
-    int n=100;
-    Source100():Source()
-    {
-    }
-    void laymangfile()
+    void laymangfile(char* s,int arr[])
     {
         fstream fsFile;
-        fsFile.open("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao100.txt", ios::in);
+        fsFile.open(s, ios::in);
         if (fsFile.eof())
         {
             cout << "Read done";
@@ -55,12 +47,23 @@ class Source100: public Source{
             while (fsFile>>tam)
             {
                 //cout<<tam<<"\n";
-                this->dulieu100[i]=tam;
+                arr[i]=tam;
                 i++;
             }
         }
  
         fsFile.close();
+    }
+};
+class Source100: public Source{
+    public:
+    int dulieu100[100];
+    int n=100;
+    Source100():Source()
+    {
+    }
+    void laymangfile(char *s,int arr[]){
+        Source::laymangfile(s,arr);
     }
     void taomang(int dl[],int n)
     {
@@ -79,27 +82,8 @@ class Source250:public Source{
     Source250():Source()
     {
     }
-    void laymangfile()
-    {
-        fstream fsFile;
-        fsFile.open("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao250.txt", ios::in);
-        if (fsFile.eof())
-        {
-            cout << "Read done";
-        }
-        else
-        {
-  		    int tam ;
-            int i = 0;
-            while (fsFile>>tam)
-            {
-                //cout<<tam<<"\n";
-                this->dulieu250[i]=tam;
-                i++;
-            }
-        }
- 
-        fsFile.close();
+   void laymangfile(char *s,int arr[]){
+        Source::laymangfile(s,arr);
     }
     void taomang(int dl[],int n)
     {
@@ -117,27 +101,8 @@ class Source500: public Source{
     Source500():Source()
     {
     }
-     void laymangfile()
-    {
-        fstream fsFile;
-        fsFile.open("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao500.txt", ios::in);
-        if (fsFile.eof())
-        {
-            cout << "Read done";
-        }
-        else
-        {
-  		    int tam ;
-            int i = 0;
-            while (fsFile>>tam)
-            {
-                //cout<<tam<<"\n";
-                this->dulieu500[i]=tam;
-                i++;
-            }
-        }
- 
-        fsFile.close();
+     void laymangfile(char *s,int arr[]){
+        Source::laymangfile(s,arr);
     }
     void taomang(int dl[],int n)
     {
@@ -359,9 +324,9 @@ int main()
     Source500 s500;
     radix ra100,ra250,ra500;
     insert ins100,ins250,ins500;
-    s100.laymangfile();
-    s250.laymangfile();
-	s500.laymangfile();
+    s100.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao100.txt",s100.dulieu100);
+    s250.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao250.txt",s250.dulieu250);
+	s500.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao500.txt",s500.dulieu500);
     cout<<"size\t100\t250\t500"<<endl;
     cout<<"Radix Sort\t"<<ra100.radixsort(s100.dulieu100,s100.n)<<"\t"<<ra250.radixsort(s250.dulieu250,s250.n)<<"\t"<<ra500.radixsort(s500.dulieu500,s500.n);
     getch();
