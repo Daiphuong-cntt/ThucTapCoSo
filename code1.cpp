@@ -3,13 +3,19 @@
 #include<time.h>
 #include<conio.h>
 #include<string.h>
-#define MAX 20
+
 using namespace std;
 
 
 class sort {
 public:
-	void PhatSinhNgauNhien(int a[])
+	void nhapMAX(int& MAX)
+	{
+		cout << "nhap so phan tu:";
+		cin >> MAX;
+	}
+public:
+	void PhatSinhNgauNhien(int a[], int MAX)
 	{
 		srand(time(0));
 		for (int i = 0; i < MAX; i++)
@@ -18,7 +24,7 @@ public:
 		}
 	}
 public:
-	void XuatMang(int a[])
+	void XuatMang(int a[], int MAX)
 	{
 		for (int i = 0; i < MAX; i++)
 		{
@@ -66,7 +72,7 @@ public:
 	}
 
 public:
-	void SapXepGiamDanBangThuatToanBubbleSort(int a[])
+	void SapXepGiamDanBangThuatToanBubbleSort(int a[], int MAX)
 	{
 		for (int i = 0; i < MAX - 1; i++)
 		{
@@ -82,18 +88,20 @@ public:
 public:
 	void Xuat()
 	{
+		int MAX;
+		nhapMAX(MAX);
 	quaylai:cout << "\n>>>>>>>>>>>>>>>>Chuong Trinh Do Time Cua Cac Thuat Toan Sap Xep:<<<<<<<<<<<<<<\n";
-		int b[MAX], d[MAX], tieptuc;
+		int b[1000], d[1000], tieptuc;
 		int j = 1;
 		clock_t start1 = clock();
 		while (j-- > 0)
-			PhatSinhNgauNhien(b);
+			PhatSinhNgauNhien(b,MAX);
 		cout << "\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan 1 La:<<<<<<<<<<<<<<<<<<<<<<<<\n";
-		XuatMang(b);
+		XuatMang(b,MAX);
 		printf("\n");
 		SapXepGiamDanBangThuatToanQuickSort(b, 0, MAX - 1);
 		cout << "\n------------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Quick Sort La:------------\n";
-		XuatMang(b);
+		XuatMang(b,MAX);
 		cout << "\n";
 		clock_t finish1 = clock();
 		double duration1 = (double)(finish1 - start1) / CLOCKS_PER_SEC;
@@ -102,13 +110,13 @@ public:
 		int l = 1000;
 		clock_t start2 = clock();
 		while (l-- > 0)
-			PhatSinhNgauNhien(d);
+			PhatSinhNgauNhien(d,MAX);
 		cout << "\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan La:<<<<<<<<<<<<<<<<<<<<<<<<\n";
-		XuatMang(d);
+		XuatMang(d,MAX);
 		cout << "\n";
-		SapXepGiamDanBangThuatToanBubbleSort(d);
+		SapXepGiamDanBangThuatToanBubbleSort(d,MAX);
 		cout << "\n-----------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Bubble Sort La:----------\n";
-		XuatMang(d);
+		XuatMang(d,MAX);
 		cout << "\n";
 
 		clock_t finish2 = clock();
