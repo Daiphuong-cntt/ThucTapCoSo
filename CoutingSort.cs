@@ -8,7 +8,19 @@ namespace ThucTapCoSo
     {
         static public void SortArrayWithCountingSort()
         {
-            int[] arrayToSort = { 2, 6, 6, 10, 10, 3 };
+            string file = @"D:\\input.txt";
+
+                // Lưu giá trị của mảng
+                string[] lines = File.ReadAllLines(file);
+
+                
+
+                int[] arr = new int[lines.Length];
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    arr[i] = int.Parse(lines[i]);
+                }
+
             int[] sorted = CSort(arrayToSort);
             int m = arrayToSort.Length;
             Console.WriteLine("The given array : ");
