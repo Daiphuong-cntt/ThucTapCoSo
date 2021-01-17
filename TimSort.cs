@@ -10,7 +10,31 @@ namespace ThucTapCoSo
       
             public const int RUN = 32;
 
-           
+            public static void SortArrayWithTimSort()
+        {
+             string file = @"D:\\input.txt";
+
+                // Lưu giá trị của mảng
+                string[] lines = File.ReadAllLines(file);
+
+                
+
+                int[] arr = new int[lines.Length];
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    arr[i] = int.Parse(lines[i]);
+                }
+
+            int n = arr.Length;
+            Console.Write("Given Array is\n");
+            printArray(arr, n);
+
+            // Gọi ham
+            timSort(arr, n);
+
+            Console.Write("After Sorting Array is\n");
+            printArray(arr, n);
+        }
             //Hàm xăp sếp mảng này từ trái sang phải theo kích thước của RUN
             public static void insertionSort(int[] arr,
                                         int left, int right)
@@ -119,20 +143,7 @@ namespace ThucTapCoSo
             }
 
             
-           public static void SortArrayWithTimSort()
-        {
-            int[] arr = {-2, 7, 15, -14, 0, 15, 0,
-                   7, -7, -4, -13, 5, 8, -14, 12};
-            int n = arr.Length;
-            Console.Write("Given Array is\n");
-            printArray(arr, n);
-
-            // Function Call 
-            timSort(arr, n);
-
-            Console.Write("After Sorting Array is\n");
-            printArray(arr, n);
-        }
+          
 
         }
 
