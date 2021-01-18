@@ -4,39 +4,36 @@ using System.Text;
 
 namespace ThucTapCoSo
 {
-    class TimSort
+    public class Timsort : Read
     {
+        
 
-      
-            public const int RUN = 32;
-
-            public static void SortArrayWithTimSort()
+       
+        public override void Readfile()
         {
-             string file = @"D:\\input.txt";
-
-                // Lưu giá trị của mảng
-                string[] lines = File.ReadAllLines(file);
-
-                
-
-                int[] arr = new int[lines.Length];
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    arr[i] = int.Parse(lines[i]);
-                }
-
-            int n = arr.Length;
+            base.Readfile();
+        }
+      
+        public void SortArrayWithTimSort()
+        {
+            //Gọi hàm đọc file từ class Read
+            base.Readfile();
+                int n = arr.Length;
             Console.Write("Given Array is\n");
             printArray(arr, n);
 
-            // Gọi ham
+            // Gọi hàm 
             timSort(arr, n);
 
-            Console.Write("After Sorting Array is\n");
+            Console.Write("After TimSort Array is\n");
             printArray(arr, n);
         }
+
+        public const int RUN = 32;
+
+           
             //Hàm xăp sếp mảng này từ trái sang phải theo kích thước của RUN
-            public static void insertionSort(int[] arr,
+            public void insertionSort(int[] arr,
                                         int left, int right)
             {
                 for (int i = left + 1; i <= right; i++)
@@ -106,7 +103,7 @@ namespace ThucTapCoSo
             }
 
             
-           public  static void timSort(int[] arr, int n)
+           public void timSort(int[] arr, int n)
             {
 
                   
@@ -135,7 +132,7 @@ namespace ThucTapCoSo
             }
 
             
-            public static void printArray(int[] arr, int n)
+            public void printArray(int[] arr, int n)
             {
                 for (int i = 0; i < n; i++)
                     Console.Write(arr[i] + " ");
@@ -143,9 +140,7 @@ namespace ThucTapCoSo
             }
 
             
-          
-
-        }
+    }
 
     
 }
