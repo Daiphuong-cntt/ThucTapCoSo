@@ -22,15 +22,15 @@ namespace ThucTapCoSo
             
                 int[] sorted = CSort(arr);
            
-            Console.WriteLine("The given array : ");
+            Console.WriteLine("Given array is : ");
             
             for (int i = 0; i < arr.Length; i++)
             {
                 Console.Write(arr[i] + " ");
                
             }
-            
-            Console.WriteLine("After Couting Sort: ");
+            Console.WriteLine();
+            Console.WriteLine("After Counting Sort Array is: ");
             for (int i = 0; i < arr.Length; i++)
             {
                 Console.Write(sorted[i]+ " ");
