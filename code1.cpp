@@ -92,13 +92,13 @@ public:
 		nhapMAX(MAX);
 	quaylai:cout << "\n>>>>>>>>>>>>>>>>Chuong Trinh Do Time Cua Cac Thuat Toan Sap Xep:<<<<<<<<<<<<<<\n";
 		int b[1000], d[1000], tieptuc;
-		int j = 1;
+		int j = 1000;
 		clock_t start1 = clock();
 		while (j-- > 0)
 			PhatSinhNgauNhien(b,MAX);
 		cout << "\n>>>>>>>>>>>>>>>Mang Phat Sinh Ngau Nhien Ban Dau Lan 1 La:<<<<<<<<<<<<<<<<<<<<<<<<\n";
 		XuatMang(b,MAX);
-		printf("\n");
+		cout << "\n";
 		SapXepGiamDanBangThuatToanQuickSort(b, 0, MAX - 1);
 		cout << "\n------------Mang Sau Khi Sap Xep Giam Dan Bang Thuat Toan Quick Sort La:------------\n";
 		XuatMang(b,MAX);
