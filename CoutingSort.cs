@@ -22,28 +22,26 @@ namespace ThucTapCoSo
                 }
 
             int[] sorted = CSort(arrayToSort);
-            int m = arrayToSort.Length;
-            Console.WriteLine("The given array : ");
-            for (int i = 0; i < m; i++)
+             Console.WriteLine("The given array : ");
+            for (int i = 0; i < arr.Length; i++)
             {
-                Console.Write(arrayToSort[i] + " ");
+                Console.Write(arr[i] + " ");
 
             }
             Console.Write("\n");
-            int n = sorted.Length;
-            Console.WriteLine(" After Couting Sort: ");
-            for (int i = 0; i < n; i++)
+            
+            Console.WriteLine("After Couting Sort: ");
+            for (int i = 0; i < arr.Length; i++)
             {
                 Console.Write(sorted[i]+ " ");
                
             }
             Console.Write("\n");
-            
         }
 
         static public int[] CSort(int[] array)
         {
-            int[] count = new int[11];
+            int[] count = new int[1000000];
 
             for (int i = 0; i < array.Length; i++)
             {
