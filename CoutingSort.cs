@@ -4,31 +4,31 @@ using System.Text;
 
 namespace ThucTapCoSo
 {
-    class CoutingSort
+     public class CountingSort : Read
     {
-        static public void SortArrayWithCountingSort()
+
+        
+
+        
+
+        public override void Readfile()
         {
-            string file = @"D:\\input.txt";
-
-                // Lưu giá trị của mảng
-                string[] lines = File.ReadAllLines(file);
-
-                
-
-                int[] arr = new int[lines.Length];
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    arr[i] = int.Parse(lines[i]);
-                }
-
-            int[] sorted = CSort(arrayToSort);
-             Console.WriteLine("The given array : ");
+            base.Readfile();
+        }
+        
+        public void SortArrayWithCountingSort()
+        {
+            base.Readfile();
+            
+                int[] sorted = CSort(arr);
+           
+            Console.WriteLine("The given array : ");
+            
             for (int i = 0; i < arr.Length; i++)
             {
                 Console.Write(arr[i] + " ");
-
+               
             }
-            Console.Write("\n");
             
             Console.WriteLine("After Couting Sort: ");
             for (int i = 0; i < arr.Length; i++)
@@ -39,7 +39,7 @@ namespace ThucTapCoSo
             Console.Write("\n");
         }
 
-        static public int[] CSort(int[] array)
+        public int[] CSort(int[] array)
         {
             int[] count = new int[1000000];
 
@@ -63,15 +63,11 @@ namespace ThucTapCoSo
                 sorted[position] = value;
 
                 count[value]--;
-            }
-
-
-            
+            }           
             return sorted;
-
         }
 
-
+        
     }
 }
 
