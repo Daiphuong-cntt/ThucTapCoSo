@@ -10,6 +10,8 @@
 #include<graphics.h>
 using namespace std;
 int time_delay=500;
+float thoigian[6];
+float thoigiantb[6];
 class Source
 {
 public:
@@ -159,30 +161,30 @@ class radix: public Sort{
         for (i = 0; i < n; i++)
         { 
             count[(arr[i] / exp) % 10]++;
-           // sleep(500);
+           // delay(10);
+            
         } 
-  
         for (i = 1; i < 10; i++)
         { 
             count[i] += count[i - 1];
-            //sleep(500);
+            //delay(10);
         } 
   
     
         for (i = n - 1; i >= 0; i--) { 
             output[count[(arr[i] / exp) % 10] - 1] = arr[i]; 
             count[(arr[i] / exp) % 10]--; 
-            //sleep(500);
+           //delay(10);
         } 
   
     
         for (i = 0; i < n; i++) 
         {
             arr[i] = output[i];
-            //sleep(500);
+            //delay(10);
         }
     } 
-    void countSort_dohoa(int arr[], int n, int exp) 
+/*    void countSort_dohoa(int arr[], int n, int exp) 
 { 
     int output[n];  
     int i, count[10] = { 0 }; 
@@ -201,18 +203,16 @@ class radix: public Sort{
         count[(arr[i] / exp) % 10]--;
 		cleardevice(); 
 	    Sort::screen(output,n);
-        delay(10); 
+        //delay(10); 
     } 
-  
-    
     for (i = 0; i < n; i++) 
         arr[i] = output[i];
         cleardevice(); 
 	    Sort::screen(arr,n);
         delay(10);
         
-}
-float radixsort_dohoa(int arr[],int n)
+}*/
+/*float radixsort_dohoa(int arr[],int n)
 {
 	clock_t begin = clock(); 
 	initwindow(800,1000);
@@ -228,13 +228,15 @@ float radixsort_dohoa(int arr[],int n)
 	    getch();
          clock_t end = clock();	
          //cout<<begin<<"\t"<<end<<endl;
-         return (float)((end-begin)/CLOCKS_PER_SEC);
+         return (float)((end-begin)/CLOCKS_PER_SEC)*1000;
     
-}
+}*/
     float radixsort(int arr[], int n) 
     {
-        clock_t begin = clock(); 
+        //auto start = high_resolution_clock::now();
+		clock_t t,t2; 
         // Tim so lon nhat de lay so chu so nhieu nhat
+        t = clock();
         int m = getMax(arr, n); 
   
         // Thuc hien sap xep theo vi tri chu so, exp la vi tri chu so, i la so hien tai 
@@ -243,13 +245,15 @@ float radixsort_dohoa(int arr[],int n)
             countSort(arr, n, exp);
        
 	    }
-         clock_t end = clock();
-         
-         
-         //cout<<"Time run: "<<(float)(end-begin)/CLOCKS_PER_SEC<<" s"<<endl;
-         //cout << fixed << setprecision(5) <<begin<<endl;
-         //cout << fixed << setprecision(5) <<end<<endl;
-         return (float)((end-begin)/CLOCKS_PER_SEC);
+	    //delay(50);
+	     //sleep(1);
+	     sleep(1);
+         t2=clock();
+        
+         float time_taken = ((float)t)/CLOCKS_PER_SEC; // in seconds
+         float time_taken2 = ((float)t2)/CLOCKS_PER_SEC;
+        
+         return (((float)time_taken2-time_taken-1)/CLOCKS_PER_SEC)*1000;
     } 
   
     // In mang sau khi sap xep 
@@ -261,9 +265,10 @@ float radixsort_dohoa(int arr[],int n)
 };
 class insert:public Sort{
     public:
-    float insertionSort(int arr[], int n)  
-    { 
-        clock_t begin = clock(); 
+    float insertSort(int arr[], int n)  
+    {
+		clock_t t1,t2; 
+        t1 = clock(); 
         int i, key, j;  
         for (i = 1; i < n; i++) 
         {  
@@ -279,10 +284,15 @@ class insert:public Sort{
             arr[j + 1] = key;
 		      
         }
-        clock_t end = clock();
-         return (float)((end-begin)/CLOCKS_PER_SEC);
+        //sleep(1);
+        sleep(1);
+        t2 = clock();
+        float time_taken1 = ((float)t1)/CLOCKS_PER_SEC; // in seconds
+         float time_taken2 = ((float)t2)/CLOCKS_PER_SEC;
+        
+         return (((float)time_taken2-time_taken1-1)/CLOCKS_PER_SEC)*1000;
     }  
-    float insertionSort_dohoa(int arr[], int n)  
+/*    float insertionSort_dohoa(int arr[], int n)  
 {  
     int i, key, j; 
 	initwindow(800,1000); 
@@ -310,7 +320,7 @@ class insert:public Sort{
    
     //closewindow();
   
-}
+}*/
     // ham in mang 
     void inmang(int arr[], int n)
         { 
@@ -324,10 +334,47 @@ int main()
     Source500 s500;
     radix ra100,ra250,ra500;
     insert ins100,ins250,ins500;
-    s100.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao100.txt",s100.dulieu100);
-    s250.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao250.txt",s250.dulieu250);
-	s500.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao500.txt",s500.dulieu500);
-    cout<<"size\t100\t250\t500"<<endl;
-    cout<<"Radix Sort\t"<<ra100.radixsort(s100.dulieu100,s100.n)<<"\t"<<ra250.radixsort(s250.dulieu250,s250.n)<<"\t"<<ra500.radixsort(s500.dulieu500,s500.n);
-    getch();
+    //s100.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao100.txt",s100.dulieu100);
+    s100.taomang(s100.dulieu100,s100.n);
+    //s250.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao250.txt",s250.dulieu250);
+    s250.taomang(s250.dulieu250,s250.n);
+	//s500.laymangfile("D:\\Thuctapcoso\\ThucTapCoSo\\dauvao500.txt",s500.dulieu500);
+	s500.taomang(s500.dulieu500,s500.n);
+    cout<<"size\t\t100\t\t250\t\t500"<<endl;
+    
+	for(int i=1;i<10;i++)
+	{
+		
+		thoigian[0]=ra100.radixsort(s100.dulieu100,s100.n);
+		thoigian[1]=ra250.radixsort(s250.dulieu250,s250.n);
+		thoigian[2]=ra500.radixsort(s500.dulieu500,s500.n);
+		thoigian[3]=ins100.insertSort(s100.dulieu100,s100.n);
+		thoigian[4]=ins250.insertSort(s250.dulieu250,s250.n);
+		thoigian[5]=ins500.insertSort(s500.dulieu500,s500.n);
+    	printf("Radix Sort\t%f\t%f\t%f\n",thoigian[0],thoigian[1],thoigian[2]);
+   		printf("insert Sort\t%f\t%f\t%f",thoigian[3],thoigian[4],thoigian[5]);
+   		if(i==1)
+   		{
+   			thoigiantb[0]=thoigian[0];
+   			thoigiantb[1]=thoigian[1];
+   			thoigiantb[2]=thoigian[2];
+   			thoigiantb[3]=thoigian[3];
+   			thoigiantb[4]=thoigian[4];
+   			thoigiantb[5]=thoigian[5];
+		   }
+		else
+			{
+				thoigiantb[0]=(thoigiantb[0]+thoigian[0])/2;
+				thoigiantb[1]=(thoigiantb[1]+thoigian[1])/2;
+				thoigiantb[2]=(thoigiantb[2]+thoigian[2])/2;
+				thoigiantb[3]=(thoigiantb[3]+thoigian[3])/2;
+				thoigiantb[4]=(thoigiantb[4]+thoigian[4])/2;
+				thoigiantb[5]=(thoigiantb[5]+thoigian[5])/2;
+			}
+    	printf("\n\n");
+	}
+	cout<<"Thoi gian trung binh la:\n";
+	printf("Radix Sort\t%f\t%f\t%f\n",thoigiantb[0],thoigiantb[1],thoigiantb[2]);
+   		printf("insert Sort\t%f\t%f\t%f",thoigiantb[3],thoigiantb[4],thoigiantb[5]);
+cout<<"\nXong";
 }
