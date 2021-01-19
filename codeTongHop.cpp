@@ -8,6 +8,7 @@
 #include<string>
 #include <unistd.h>
 using namespace std;
+int time_delay=500;
 class Source
 {
 public:
@@ -187,12 +188,15 @@ public:  void printArray(int arr[], int size)
     {
         Sort::inmang(arr,size);
     }
-	double ThoiGianThucHien(int arr[],int n)
+	double t_SelectionSort(int arr[],int n)
 	{
 		clock_t star = clock();
+	
 		selectionSort(arr,n);
+	//	printArray(arr,n);
+	sleep(1);
 		clock_t end = clock();
-		double d = (double)(end-star)/CLOCKS_PER_SEC;
+		double d = (double)((end-star)-1)/CLOCKS_PER_SEC;
 		return d;
 	}
 };
@@ -254,11 +258,23 @@ public:  void treeSort(int arr[], int n) {
     {
     	Sort::inmang(arr,n);
 	}
+	double t_TreeSort(int arr[],int n)
+	{
+		clock_t star = clock();
+	//inmang(arr,n);
+		treeSort(arr,n);
+		sleep(1);
+		clock_t end = clock();
+		double d = (double)((end-star)-1)/CLOCKS_PER_SEC;
+		return d;
+	}
 };
+
 int main()
 {
 	SelectionSort ss100, ss250, ss500;
-    //TreeSort ts100, ts250, ts500;
+    TreeSort ts100, ts250, ts500;
+    
     
     Source100 s;
     Source100 s100_1,s100_2;
@@ -279,13 +295,18 @@ int main()
     s500_2.laymangfile();
     s500_2.taomang(s500_2.dulieu500,s500_2.n);
 
-	cout << "size\t\t100\t250\t500";
+
 	ss100.selectionSort(s100_1.dulieu100,s100_1.n);
 	ss250.selectionSort(s250_1.dulieu250,s250_1.n);
 	ss500.selectionSort(s500_1.dulieu500,s500_1.n);
-	cout << "\nSelection Sort\t" << ss100.ThoiGianThucHien(s100_1.dulieu100,s100_1.n) << "\t" << ss250.ThoiGianThucHien(s250_1.dulieu250,s250_1.n) << "\t" << ss500.ThoiGianThucHien(s500_1.dulieu500,s500_1.n);
-	cout << "\nTree Sort\t" << ss100.ThoiGianThucHien(s100_1.dulieu100,s100_1.n) << "\t" << ss250.ThoiGianThucHien(s250_1.dulieu250,s250_1.n) << "\t" << ss500.ThoiGianThucHien(s500_1.dulieu500,s500_1.n);
-	
-    getchar();
+	cout << "\nsize\t\t100\t250\t500";
+	for (int i=0;i<10;i++)
+	{
+	cout<<"\n----------------------------------------------------";
+	cout << "\nSelection Sort\t" << ss100.t_SelectionSort(s100_1.dulieu100,s100_1.n) << "\t" << ss250.t_SelectionSort(s250_1.dulieu250,s250_1.n) << "\t" << ss500.t_SelectionSort(s500_1.dulieu500,s500_1.n);
+	cout << "\nTree Sort\t" << ts100.t_TreeSort(s100_1.dulieu100,s100_1.n) << "\t" << ts250.t_TreeSort(s250_1.dulieu250,s250_1.n) << "\t" << ts500.t_TreeSort(s500_1.dulieu500,s500_1.n);
+	}
+     getchar();
 }
+
 
