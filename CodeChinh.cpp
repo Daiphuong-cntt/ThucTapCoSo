@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <unistd.h>
 
 using namespace std;
-
 class Source
 {
 	public:
@@ -95,10 +95,10 @@ class Source500: public Source
 	}
 };
 /*====================================================================*/
-class Sort{
+class Sort
+{
 	public: void inmang(int arr[],int n)
     {
-    	cout << "\nMang sau sap xep\n";
         for (int i = 0 ; i < n ; i++) 
         cout << arr[i] << " "; 
     }
@@ -163,7 +163,6 @@ class MergeSort: public Sort
 	}
 	void InMang(int arr[], int n)
 	{
-		cout << "\nMerge Sort:\n";
 		Sort::inmang(arr, n);
 	}
 	// tinh thoi gian thuc hien thuat toan MergeSort
@@ -173,8 +172,9 @@ class MergeSort: public Sort
 		int r = n - 1; // ket thuc tai r
 		clock_t star = clock();
 			mergeSort(arr, l, r);
+			sleep(1);
 		clock_t end = clock();
-		double d = (double)(end - star) / CLOCKS_PER_SEC;
+		double d = (double)(end - star-1) / CLOCKS_PER_SEC;
 		return d;
 	}
 };
@@ -217,7 +217,6 @@ class HeapSort : public Sort
 	}
 	void InMang (int arr[], int n)
 	{
-		cout << "\nHeap Sort:\n";
 		Sort::inmang(arr, n);
 	}
 	// tinh thoi gian thuc hien thuat toan HeapSort
@@ -225,8 +224,9 @@ class HeapSort : public Sort
 	{
 		clock_t star = clock();
 			heapSort(arr, n);
+			sleep(1);
 		clock_t end = clock();
-		double d = (double)(end - star) / CLOCKS_PER_SEC;
+		double d = (double)(end - star - 1) / CLOCKS_PER_SEC;
 		return d;
 	}
 };
@@ -249,8 +249,8 @@ int main()
 	
 	// hien thi
 	cout << "Size\t\t100\t250\t500";
+	
 	cout << "\nMerge Sort\t" << ms100.t_MergeSort(s100_1.dulieu100,s100_1.n) << "\t" << ms250.t_MergeSort(s250_1.dulieu250,s250_1.n) << "\t" << ms500.t_MergeSort(s500_1.dulieu500,s500_1.n);
 	cout << "\nHeap Sort\t"  << hs100.t_HeapSort(s100_2.dulieu100,s100_2.n)  << "\t" << hs250.t_HeapSort(s250_2.dulieu250,s250_2.n)  << "\t" << hs500.t_HeapSort(s500_2.dulieu500,s500_2.n);
-	
     return 0;
 }
