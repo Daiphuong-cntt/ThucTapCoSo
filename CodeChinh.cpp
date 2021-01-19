@@ -174,7 +174,7 @@ class MergeSort: public Sort
 			mergeSort(arr, l, r);
 			sleep(1);
 		clock_t end = clock();
-		double d = (double)(end - star-1) / CLOCKS_PER_SEC;
+		double d = (double)(end - star - 1) / CLOCKS_PER_SEC;
 		return d;
 	}
 };
@@ -248,9 +248,22 @@ int main()
 	HeapSort hs100, hs250, hs500;
 	
 	// hien thi
+	double sumMS100=0, sumMS250=0, sumMS500=0;
+	double sumHS100=0, sumHS250=0, sumHS500=0;
 	cout << "Size\t\t100\t250\t500";
-	
-	cout << "\nMerge Sort\t" << ms100.t_MergeSort(s100_1.dulieu100,s100_1.n) << "\t" << ms250.t_MergeSort(s250_1.dulieu250,s250_1.n) << "\t" << ms500.t_MergeSort(s500_1.dulieu500,s500_1.n);
-	cout << "\nHeap Sort\t"  << hs100.t_HeapSort(s100_2.dulieu100,s100_2.n)  << "\t" << hs250.t_HeapSort(s250_2.dulieu250,s250_2.n)  << "\t" << hs500.t_HeapSort(s500_2.dulieu500,s500_2.n);
-    return 0;
+	for(int i= 0;i<10;i++)
+	{
+		//cout << "\nMerge Sort\t" << ms100.t_MergeSort(s100_1.dulieu100,s100_1.n) << "\t" << ms250.t_MergeSort(s250_1.dulieu250,s250_1.n) << "\t" << ms500.t_MergeSort(s500_1.dulieu500,s500_1.n);
+		//cout << "\nHeap Sort\t"  << hs100.t_HeapSort(s100_2.dulieu100,s100_2.n)  << "\t" << hs250.t_HeapSort(s250_2.dulieu250,s250_2.n)  << "\t" << hs500.t_HeapSort(s500_2.dulieu500,s500_2.n);
+    	sumMS100 = sumMS100 + ms100.t_MergeSort(s100_1.dulieu100,s100_1.n);
+		sumMS250 = sumMS250 + ms250.t_MergeSort(s250_1.dulieu250,s250_1.n);
+		sumMS500 = sumMS500 + ms500.t_MergeSort(s500_1.dulieu500,s500_1.n);
+		
+		sumHS100 = sumHS100 + hs100.t_HeapSort(s100_2.dulieu100,s100_2.n);
+		sumHS250 = sumHS250 + hs250.t_HeapSort(s250_2.dulieu250,s250_2.n);
+		sumHS500 = sumHS500 + hs500.t_HeapSort(s500_2.dulieu500,s500_2.n);
+	}
+	cout << "\nMerge Sort :\t" << sumMS100/10 << "\t" << sumMS250/10 << "\t" << sumMS500/10;
+	cout << "\nHeap Sort :\t" << sumHS100/10 << "\t" << sumHS250/10 << "\t" << sumHS500/10;
+	return 0;
 }
