@@ -299,13 +299,26 @@ int main()
 	ss100.selectionSort(s100_1.dulieu100,s100_1.n);
 	ss250.selectionSort(s250_1.dulieu250,s250_1.n);
 	ss500.selectionSort(s500_1.dulieu500,s500_1.n);
+	
+	double sumSS100=0, sumSS250=0, sumSS500=0;
+	double sumTS100=0, sumTS250=0, sumTS500=0;
+	
 	cout << "\nsize\t\t100\t250\t500";
 	for (int i=0;i<10;i++)
 	{
-	cout<<"\n----------------------------------------------------";
-	cout << "\nSelection Sort\t" << ss100.t_SelectionSort(s100_1.dulieu100,s100_1.n) << "\t" << ss250.t_SelectionSort(s250_1.dulieu250,s250_1.n) << "\t" << ss500.t_SelectionSort(s500_1.dulieu500,s500_1.n);
-	cout << "\nTree Sort\t" << ts100.t_TreeSort(s100_1.dulieu100,s100_1.n) << "\t" << ts250.t_TreeSort(s250_1.dulieu250,s250_1.n) << "\t" << ts500.t_TreeSort(s500_1.dulieu500,s500_1.n);
+//	cout<<"\n----------------------------------------------------";
+//	cout << "\nSelection Sort\t" << ss100.t_SelectionSort(s100_1.dulieu100,s100_1.n) << "\t" << ss250.t_SelectionSort(s250_1.dulieu250,s250_1.n) << "\t" << ss500.t_SelectionSort(s500_1.dulieu500,s500_1.n);
+//	cout << "\nTree Sort\t" << ts100.t_TreeSort(s100_1.dulieu100,s100_1.n) << "\t" << ts250.t_TreeSort(s250_1.dulieu250,s250_1.n) << "\t" << ts500.t_TreeSort(s500_1.dulieu500,s500_1.n);
+	sumSS100 = sumSS100 + ss100.t_SelectionSort(s100_1.dulieu100,s100_1.n);
+	sumSS250 = sumSS250 + ss250.t_SelectionSort(s250_1.dulieu250,s250_1.n);
+	sumSS500 = sumSS500 + ss500.t_SelectionSort(s500_1.dulieu500,s500_1.n);
+	
+	sumTS100 = sumTS100 + ts100.t_TreeSort(s100_1.dulieu100,s100_1.n);
+	sumTS250 = sumTS250 + ts250.t_TreeSort(s250_1.dulieu250,s250_1.n);
+	sumTS500 = sumTS500 + ts500.t_TreeSort(s500_1.dulieu500,s500_1.n);
 	}
+	cout << "\nSelect Sort:\t" << sumSS100/10 << "\t" << sumSS250/10 << "\t" << sumSS500/10;
+	cout << "\nTree Sort:\t" << sumTS100/10 << "\t" << sumTS250/10 << "\t" << sumTS500/10;
      getchar();
 }
 
